@@ -6,7 +6,12 @@ export const fetchQuestions = async (
 
   const data = await (await fetch(endPoint)).json();
 
-  console.log(data);
+  return data.results.map((question: Question) => (
+      {
+          ...question
+          answers: 
+      }
+  ))
 };
 
 export enum Difficulty {
@@ -23,3 +28,5 @@ export type Question = {
     question: string;
     type: string;
 }
+
+export type QuestionState = Question & { answers: string[] };
