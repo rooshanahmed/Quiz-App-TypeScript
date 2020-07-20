@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 import QuizCard from './components/QuizCard';
+import { fetchQuestions, Difficulty } from './API';
 
 const TOTAL_QUESTIONS = 10;
 
@@ -17,6 +18,9 @@ function App() {
   const [score , setScore] = useState(0);
 
   const [gameOver , setGameOver] = useState(true);
+
+  console.log(fetchQuestions(TOTAL_QUESTIONS, Difficulty.MEDIUM));
+  
   
   const startQuiz = async() => {}
 
