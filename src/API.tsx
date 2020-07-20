@@ -1,3 +1,5 @@
+import { shuffleArray } from "./Utilities";
+
 export const fetchQuestions = async (
   amount: number,
   difficulty: Difficulty
@@ -6,12 +8,13 @@ export const fetchQuestions = async (
 
   const data = await (await fetch(endPoint)).json();
 
-  return data.results.map((question: Question) => (
-      {
-          ...question
-          answers: 
-      }
-  ))
+  return data.results.map((question: Question) => ({
+    ...question,
+    answers: shuffleArray([
+      ...question.incorrect_answers,
+      question.correct_answer,
+    ]),
+  }));
 };
 
 export enum Difficulty {
@@ -21,12 +24,12 @@ export enum Difficulty {
 }
 
 export type Question = {
-    category: string;
-    correct_answer: string;
-    difficulty: string;
-    incorrect_answers: string[];
-    question: string;
-    type: string;
-}
+  category: string;
+  correct_answer: string;
+  difficulty: string;
+  incorrect_answers: string[];
+  question: string;
+  type: string;
+};
 
 export type QuestionState = Question & { answers: string[] };

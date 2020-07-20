@@ -1,28 +1,39 @@
 import React, { useState } from 'react';
-import { Button } from '@material-ui/core';
+import { Button , CircularProgress } from '@material-ui/core';
 import QuizCard from './components/QuizCard';
-import { fetchQuestions, Difficulty } from './API';
+import { fetchQuestions, Difficulty, QuestionState } from './API';
 
 const TOTAL_QUESTIONS = 10;
+
+type AnswerObject = {
+  question: string;
+  answer: string;
+  corrrect: boolean;
+  correctAnswer: string;
+}
 
 function App() {
   
   const [Loading , setLoading] = useState(false);
-
-  const [questions , setQuestions] = useState([]);
-
+  const [questions , setQuestions] = useState<QuestionState[]>([]);
   const [number , setNumber] = useState(0);
-
-  const [userAnswers , setUserAnswers] = useState([]);
-
+  const [userAnswers , setUserAnswers] = useState<AnswerObject[]>([]);
   const [score , setScore] = useState(0);
-
   const [gameOver , setGameOver] = useState(true);
 
-  console.log(fetchQuestions(TOTAL_QUESTIONS, Difficulty.MEDIUM));
+  console.log(questions);
   
   
-  const startQuiz = async() => {}
+  const startQuiz = async() => {
+    setLoading(true);
+    setGameOver(false);
+    const newQuestions = await fetchQuestions(TOTAL_QUESTIONS, Difficulty.MEDIUM);
+    setQuestions(newQuestions);
+    setScore(0);
+    setUserAnswers([]);
+    setNumber(0);
+    setLoading(false);
+  };
 
   const nextQuestion = async() => {}
 
@@ -31,15 +42,15 @@ function App() {
   return (
     <div>
       <h1>Quiz App</h1>
-      <Button onClick={startQuiz}>
+      {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+      <Button onClick={startQuiz} variant="contained">
           Begin Quiz
-      </Button>
+      </Button> ) : null }
+      {!gameOver ? (
       <p>
-        Score: 
-      </p>
-      <p>
-        Loading
-      </p>
+        Score:
+      </p> ) : null }
+      {Loading ? (<CircularProgress className='loading' />) : null }
       <QuizCard 
         questionNum={number + 1}
         totalQuestions={TOTAL_QUESTIONS}
@@ -48,7 +59,7 @@ function App() {
         userAnswer={userAnswers ? userAnswers[number] : undefined }
         callback={checkAnswer}
       />
-      <Button onClick={nextQuestion}>
+      <Button onClick={nextQuestion} variant="contained">
         Next
       </Button>
     </div>
