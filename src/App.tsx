@@ -5,7 +5,7 @@ import { fetchQuestions, Difficulty, QuestionState } from "./API";
 
 const TOTAL_QUESTIONS = 10;
 
-type AnswerObject = {
+export type AnswerObject = {
   question: string;
   answer: string;
   corrrect: boolean;
@@ -38,7 +38,7 @@ function App() {
 
   const nextQuestion = async () => {};
 
-  const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const checkAnswer = (e: any) => {
     if (!gameOver) {
       //user answer
       const answer = e.currentTarget.value;
@@ -53,6 +53,7 @@ function App() {
         correct,
         correctAnswer: questions[number].correct_answer,
       };
+      setUserAnswers((prev) => [...prev, answerObject]);
     }
   };
 
