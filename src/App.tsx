@@ -8,7 +8,7 @@ const TOTAL_QUESTIONS = 10;
 export type AnswerObject = {
   question: string;
   answer: string;
-  corrrect: boolean;
+  correct: boolean;
   correctAnswer: string;
 };
 
