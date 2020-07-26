@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, CircularProgress } from "@material-ui/core";
 import QuizCard from "./components/QuizCard";
 import { fetchQuestions, Difficulty, QuestionState } from "./API";
+import { GlobalStyle } from "./styles/App.Styles";
 
 const TOTAL_QUESTIONS = 10;
 
@@ -67,6 +68,7 @@ function App() {
 
   return (
     <div>
+      <GlobalStyle />
       <h1>Quiz App</h1>
       {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
         <Button onClick={startQuiz} variant="contained">

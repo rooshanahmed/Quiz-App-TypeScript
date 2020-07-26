@@ -8,7 +8,8 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        background-image: src("./1138.jpg");
+        background-image: url("https://image.freepik.com/free-photo/old-wooden-texture-background-vintage_55716-1138.jpg");
+        background-size: cover;
     }
     
 `;
