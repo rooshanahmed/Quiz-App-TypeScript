@@ -1,8 +1,17 @@
 import React, { useState } from "react";
-import { Button, CircularProgress } from "@material-ui/core";
+import { Button, CircularProgress, makeStyles } from "@material-ui/core";
 import QuizCard from "./components/QuizCard";
 import { fetchQuestions, Difficulty, QuestionState } from "./API";
-import { GlobalStyle } from "./styles/App.Styles";
+import "./styles/App.module.css";
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    alignItems: "center",
+    justifyContent: "center",
+    display: "flex",
+    flexDirection: "column",
+  },
+}));
 
 const TOTAL_QUESTIONS = 10;
 
@@ -20,6 +29,8 @@ function App() {
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
+
+  const classes = useStyles();
 
   console.log(questions);
 
@@ -67,8 +78,7 @@ function App() {
   };
 
   return (
-    <div>
-      <GlobalStyle />
+    <div className={classes.container}>
       <h1>Quiz App</h1>
       {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
         <Button onClick={startQuiz} variant="contained">

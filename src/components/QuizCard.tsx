@@ -1,5 +1,21 @@
 import React from "react";
-import { Button } from "@material-ui/core";
+import { Button, makeStyles, Card, CardContent } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  btn: {
+    padding: "0 10px 10px",
+    justifyContent: "center",
+    margin: "8px",
+    alignItems: "center",
+    display: "flex",
+  },
+  contain: {
+    alignItems: "center",
+    justifyContent: "center",
+    display: "flex",
+    flexDirection: "column",
+  },
+}));
 
 type Props = {
   question: string;
@@ -18,21 +34,39 @@ const QuizCard: React.FC<Props> = ({
   questionNum,
   totalQuestions,
 }) => {
+  const classes = useStyles();
   return (
-    <div>
-      <p>
-        Question: {questionNum} / {totalQuestions}
-      </p>
-      <p dangerouslySetInnerHTML={{ __html: question }} />
-      <div>
-        {answers.map((answers) => (
+    <div className={"classes.contain"}>
+      <Card
+        style={{
+          alignItems: "center",
+          justifyContent: "center",
+          alignContent: "center",
+          width: "600px",
+        }}
+      >
+        <CardContent>
+          <p>
+            Question: {questionNum} / {totalQuestions}
+          </p>
+          <p dangerouslySetInnerHTML={{ __html: question }} />
           <div>
-            <Button onClick={callback} value={answers} disabled={userAnswer}>
-              <span dangerouslySetInnerHTML={{ __html: answers }} />
-            </Button>
+            {answers.map((answers) => (
+              <div>
+                <Button
+                  onClick={callback}
+                  value={answers}
+                  disabled={userAnswer}
+                  variant={"contained"}
+                  className={classes.btn}
+                >
+                  <span dangerouslySetInnerHTML={{ __html: answers }} />
+                </Button>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };
