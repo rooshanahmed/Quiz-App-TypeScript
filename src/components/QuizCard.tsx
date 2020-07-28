@@ -43,6 +43,7 @@ const QuizCard: React.FC<Props> = ({
           justifyContent: "center",
           alignContent: "center",
           width: "600px",
+          background: "#282c34",
         }}
       >
         <CardContent>
