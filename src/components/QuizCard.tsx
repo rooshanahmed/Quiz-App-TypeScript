@@ -3,7 +3,7 @@ import { Button, makeStyles, Card, CardContent } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   btn: {
-    padding: "0 10px 10px",
+    padding: "0 30px",
     justifyContent: "center",
     margin: "8px",
     alignItems: "center",
