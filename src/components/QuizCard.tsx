@@ -9,11 +9,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     display: "flex",
   },
-  contain: {
-    alignItems: "center",
-    justifyContent: "center",
-    display: "flex",
-    flexDirection: "column",
+  card: {
+    background: "#282c34",
+    width: "700px",
   },
 }));
 
@@ -36,21 +34,13 @@ const QuizCard: React.FC<Props> = ({
 }) => {
   const classes = useStyles();
   return (
-    <div className={"classes.contain"}>
-      <Card
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
-          alignContent: "center",
-          width: "600px",
-          background: "#282c34",
-        }}
-      >
+    <div>
+      <Card className={classes.card}>
         <CardContent>
-          <p>
+          <p style={{ textAlign: "center" , fontFamily: "cursive" , textDecoration: "none" }}>
             Question: {questionNum} / {totalQuestions}
           </p>
-          <p dangerouslySetInnerHTML={{ __html: question }} />
+          <p dangerouslySetInnerHTML={{ __html: question }} style={{ textAlign: "center" }} />
           <div>
             {answers.map((answers) => (
               <div>
