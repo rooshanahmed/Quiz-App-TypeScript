@@ -3,15 +3,17 @@ import { Button, makeStyles, Card, CardContent } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   btn: {
-    padding: "0 30px",
+    padding: "5px 30px",
     justifyContent: "center",
-    margin: "8px",
+    margin: "auto",
     alignItems: "center",
     display: "flex",
+    color: "white",
   },
   card: {
-    background: "#282c34",
+    background: "#006bb3",
     width: "700px",
+    marginTop: "10px",
   },
 }));
 
@@ -37,10 +39,24 @@ const QuizCard: React.FC<Props> = ({
     <div>
       <Card className={classes.card}>
         <CardContent>
-          <p style={{ textAlign: "center" , fontFamily: "cursive" , textDecoration: "none" }}>
+          <p
+            style={{
+              textAlign: "center",
+              fontFamily: "cursive",
+              textDecoration: "none",
+              color: "white",
+            }}
+          >
             Question: {questionNum} / {totalQuestions}
           </p>
-          <p dangerouslySetInnerHTML={{ __html: question }} style={{ textAlign: "center" }} />
+          <p
+            dangerouslySetInnerHTML={{ __html: question }}
+            style={{
+              textAlign: "center",
+              fontFamily: "cursive",
+              color: "white",
+            }}
+          />
           <div>
             {answers.map((answers) => (
               <div>
@@ -48,7 +64,6 @@ const QuizCard: React.FC<Props> = ({
                   onClick={callback}
                   value={answers}
                   disabled={userAnswer}
-                  variant={"contained"}
                   className={classes.btn}
                 >
                   <span dangerouslySetInnerHTML={{ __html: answers }} />

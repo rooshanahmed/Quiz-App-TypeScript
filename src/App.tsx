@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { Button, CircularProgress, makeStyles } from "@material-ui/core";
+import {
+  Button,
+  CircularProgress,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
 import QuizCard from "./components/QuizCard";
 import { fetchQuestions, Difficulty, QuestionState } from "./API";
 import "./styles/App.module.css";
@@ -79,13 +84,35 @@ function App() {
 
   return (
     <div className={classes.container}>
-      <h1>Quiz App</h1>
+      <Typography
+        variant={"h1"}
+        style={{ fontFamily: "Lucida Bright" }}
+      >
+        Quiz App
+      </Typography>
       {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-        <Button onClick={startQuiz} variant="contained">
+        <Button
+          onClick={startQuiz}
+          variant="contained"
+          style={{
+            marginTop: "200px",
+            background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+            border: 0,
+            borderRadius: 3,
+            boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+            color: "white",
+            height: 48,
+            padding: "0 30px",
+          }}
+        >
           Begin Quiz
         </Button>
       ) : null}
-      {!gameOver ? <p>Score: {score}</p> : null}
+      {!gameOver ? (
+        <Typography variant={"h4"} style={{  marginTop: "8px" }} >
+          Score: {score}
+          </Typography>
+      ) : null}
       {Loading ? <CircularProgress className="loading" /> : null}
       {!Loading && !gameOver ? (
         <QuizCard
@@ -101,7 +128,11 @@ function App() {
       !Loading &&
       userAnswers.length === number + 1 &&
       number !== TOTAL_QUESTIONS - 1 ? (
-        <Button onClick={nextQuestion} variant="contained">
+        <Button
+          onClick={nextQuestion}
+          variant="contained"
+          style={{ marginTop: "8px", padding: "0 20px" }}
+        >
           Next
         </Button>
       ) : null}
