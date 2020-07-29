@@ -84,10 +84,7 @@ function App() {
 
   return (
     <div className={classes.container}>
-      <Typography
-        variant={"h1"}
-        style={{ fontFamily: "Lucida Bright" }}
-      >
+      <Typography variant={"h1"} style={{ fontFamily: "Lucida Bright" }}>
         Quiz App
       </Typography>
       {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
@@ -109,9 +106,9 @@ function App() {
         </Button>
       ) : null}
       {!gameOver ? (
-        <Typography variant={"h4"} style={{  marginTop: "8px" }} >
+        <Typography variant={"h4"} style={{ marginTop: "8px" }}>
           Score: {score}
-          </Typography>
+        </Typography>
       ) : null}
       {Loading ? <CircularProgress className="loading" /> : null}
       {!Loading && !gameOver ? (
@@ -131,7 +128,12 @@ function App() {
         <Button
           onClick={nextQuestion}
           variant="contained"
-          style={{ marginTop: "8px", padding: "0 20px" }}
+          style={{
+            marginTop: "8px",
+            padding: "8px 20px",
+            background: "black",
+            color: "white",
+          }}
         >
           Next
         </Button>
