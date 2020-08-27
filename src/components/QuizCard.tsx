@@ -11,9 +11,10 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
   },
   card: {
-    background: "#006bb3",
+    background: "#5e5c5c",
     width: "700px",
     marginTop: "10px",
+    opacity: "75%",
   },
 }));
 
