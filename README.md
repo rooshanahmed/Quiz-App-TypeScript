@@ -1,6 +1,6 @@
 # QUIZ APP
 
-## Basic example of React in Typescript.
+## Basic example of React App in Typescript.
 
 <img src="./images/1.png" alt="Screenshot" />
 
